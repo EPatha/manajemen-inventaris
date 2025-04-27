@@ -1,0 +1,6 @@
+<?php
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+Route::resource('items', 'App\Http\Controllers\Api\ItemController');

@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
+
 // Route untuk halaman utama (home)
 Route::get('/', function () {
     return view('home');

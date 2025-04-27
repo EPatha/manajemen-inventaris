@@ -12,7 +12,6 @@ class Item extends Model
     // Menentukan kolom yang bisa diisi menggunakan mass-assignment
     protected $fillable = [
         'name',
-        'description',
         'price',
         'quantity',
         'category_id',
