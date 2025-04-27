@@ -2,8 +2,8 @@
 
 ## Tentang Proyek
 
-Vent adalah aplikasi manajemen inventaris berbasis web yang dirancang untuk membantu perusahaan dalam mengelola dan memantau inventaris barang secara efektif.  
-Dibangun menggunakan Laravel dan Filament untuk backend dan dashboard admin, serta DaisyUI (TailwindCSS) untuk landing page yang modern dan responsif.
+Aplikasi manajemen inventaris berbasis web yang dirancang untuk membantu perusahaan dalam mengelola dan memantau inventaris barang secara efektif.  
+Dibangun menggunakan Laravel dan Filament untuk backend dan dashboard admin.
 
 Aplikasi ini bertujuan untuk:
 - Memudahkan pencatatan keluar-masuk barang
