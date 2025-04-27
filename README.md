@@ -1,151 +1,157 @@
-Manajemen Inventory
-Tentang Proyek
+# Manajemen Inventory
 
-Vent adalah aplikasi manajemen inventaris berbasis web yang dirancang untuk membantu perusahaan dalam mengelola dan memantau inventaris barang secara efektif.
-Dibangun menggunakan Laravel dan Filament untuk backend dan dashboard admin yang dinamis, serta DaisyUI (TailwindCSS) untuk landing page yang modern dan responsif.
+## Tentang Proyek
+
+Vent adalah aplikasi manajemen inventaris berbasis web yang dirancang untuk membantu perusahaan dalam mengelola dan memantau inventaris barang secara efektif.  
+Dibangun menggunakan Laravel dan Filament untuk backend dan dashboard admin, serta DaisyUI (TailwindCSS) untuk landing page yang modern dan responsif.
 
 Aplikasi ini bertujuan untuk:
+- Memudahkan pencatatan keluar-masuk barang
+- Memantau ketersediaan stok secara real-time
+- Meningkatkan efisiensi pengelolaan inventaris perusahaan
 
-    Memudahkan pencatatan keluar-masuk barang
+## Fitur Utama
 
-    Memantau ketersediaan stok secara real-time
+- CRUD Data Item
+- CRUD Data Kategori
+- CRUD Data Supplier
+- CRUD Data User Admin
+- Tabel ringkasan stok barang:
+  - Total stok
+  - Total nilai stok
+  - Rata-rata harga barang
+- Tabel barang dengan stok di bawah ambang batas
+- Laporan barang berdasarkan kategori
+- Ringkasan per kategori dan per pemasok
+- Ringkasan keseluruhan inventaris
 
-    Meningkatkan efisiensi pengelolaan inventaris perusahaan
+## Technology Stack
 
-Fitur Utama
+- Laravel
+- MySQL
+- Docker
 
-    CRUD Data Item
+## Prasyarat
 
-    CRUD Data Kategori
+- Docker + docker-compose (Linux)
 
-    CRUD Data Supplier
+## Panduan Instalasi
 
-    CRUD Data User Admin
+### 1. Clone Project
 
-    Tabel ringkasan stok barang:
-
-        Total stok
-
-        Total nilai stok
-
-        Rata-rata harga barang
-
-    Tabel barang dengan stok di bawah ambang batas
-
-    Laporan barang berdasarkan kategori
-
-    Ringkasan per kategori dan per pemasok
-
-    Ringkasan keseluruhan inventaris
-
-Technology Stack
-
-    Laravel – PHP Framework
-
-    MySQL – Relational Database Management System
-
-    Nginx – Web Server
-
-    Docker – Containerization Platform
-
-Prasyarat
-
-Pastikan sistem Anda telah menginstal:
-
-    Docker Desktop (Windows/MacOS) atau
-
-    Docker dan docker-compose package (Linux)
-
-Panduan Instalasi
-1. Clone Project
-
+```bash
 git clone https://github.com/FadhilFirmansyah/container-inventory.git
+```
 
-Clone project ke direktori aktif Anda.
-2. Pindah ke Direktori Project
+### 2. Masuk ke Direktori Project
 
+```bash
 cd container-inventory
+```
 
-3. Install Project
-3.1. Linux & MacOS (UNIX)
+### 3. Install Project
 
-Jalankan skrip otomatis:
+#### Untuk Linux & MacOS
 
+```bash
 ./setup.sh
+```
 
-3.2. Windows
+#### Untuk Windows
 
-Karena setup.sh tidak bisa langsung dijalankan di Windows (tanpa WSL), ikuti langkah manual:
-3.2.1. Compose Up
+##### 3.2.1. Jalankan docker-compose
 
+```bash
 docker-compose up -d --build
+```
 
-3.2.2. Ubah Izin Akses Folder
+##### 3.2.2. Ubah permission storage dan cache
 
+```bash
 docker-compose exec app chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache
+```
 
-3.2.3. Install Dependency Frontend
+##### 3.2.3. Install Dependency Frontend
 
+```bash
 docker exec laravel_app npm install
+```
 
-3.2.4. Build Frontend
+##### 3.2.4. Build Frontend
 
+```bash
 docker exec laravel_app npm run build
+```
 
-3.2.5. Install Dependency Backend
+##### 3.2.5. Install Dependency Backend
 
+```bash
 docker exec laravel_app composer install
+```
 
-3.2.6. Duplikat File ENV
+##### 3.2.6. Copy file ENV
 
+```bash
 docker exec laravel_app cp .env.example .env
+```
 
-3.2.7. Generate Key Laravel
+##### 3.2.7. Generate Key Laravel
 
+```bash
 docker exec laravel_app php artisan key:generate
+```
 
-3.2.8. Ubah Konfigurasi Database di .env
+##### 3.2.8. Edit konfigurasi .env
 
 Sebelum:
 
+```
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_USERNAME=root
 DB_PASSWORD=
+```
 
 Sesudah:
 
+```
 DB_HOST=db
 DB_PORT=3306
 DB_USERNAME=root
-DB_PASSWORD=root
+DB_PASSWORD=root_password
+```
 
-3.2.9. Migrasi dan Seed Database
+##### 3.2.9. Migrasi dan seeding database
 
+```bash
 docker exec laravel_app php artisan migrate --seed
+```
 
-Credential Login
+## Credential Login
 
-    Username: admin
+- Username: admin
+- Email: admin@gmail.com
+- Password: root_password
 
-    Email: admin@gmail.com
+## Troubleshooting
 
-    Password: sudo
+Jika muncul error saat migrate & seed:
 
-Troubleshooting
-
-Jika muncul error saat menjalankan:
-
+```bash
 docker exec laravel_app php artisan migrate --seed
+```
 
-Solusi:
+Lakukan langkah berikut:
 
-    Ubah DB_HOST di .env menjadi:
+### 1. Ubah `.env`
 
+```dotenv
 DB_HOST=mysql_db
+```
 
-    Sesuaikan docker-compose.yml:
+### 2. Update `docker-compose.yml`
 
+```yaml
 app:
   build:
     context: .
@@ -178,16 +184,18 @@ db:
     retries: 5
   networks:
     - app-network
+```
 
-    Lalu jalankan ulang perintah migrate & seed.
+Kemudian jalankan ulang migrate & seed.
 
-Struktur Arsitektur Aplikasi
-File/Folder	Deskripsi
-docker-compose.yml	Konfigurasi multi-container Docker
-Dockerfile	Instruksi untuk membangun image Laravel
-inventory-project/	Source code aplikasi Vent
-nginx.conf	Konfigurasi server Nginx
-setup.sh	Skrip otomatis setup environment
-License
+## Struktur Arsitektur
+
+| File/Folder         | Deskripsi                                |
+|---------------------|------------------------------------------|
+| docker-compose.yml  | Konfigurasi multi-container Docker       |
+| Dockerfile           | Instruksi build image Laravel           |
+| inventory-project/  | Source code aplikasi Vent                |
+
+## License
 
 This project is open-source and free to use.
