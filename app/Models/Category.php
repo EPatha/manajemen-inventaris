@@ -8,11 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    protected $fillable = ['name'];
 
-    // Relasi ke tabel Items
-    public function items()
-    {
-        return $this->hasMany(Item::class);
-    }
+    protected $fillable = [
+        'name',
+        'description',  // Menambahkan description ke dalam $fillable
+    ];
 }

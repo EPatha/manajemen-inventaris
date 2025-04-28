@@ -9,9 +9,10 @@ class Supplier extends Model
 {
     use HasFactory;
 
-    // Relasi ke tabel Items
-    public function items()
-    {
-        return $this->hasMany(Item::class);
-    }
+    // Menentukan kolom yang bisa diisi menggunakan mass-assignment
+    protected $fillable = [
+        'name',
+        'contact_info',
+        'created_by',  // Menambahkan created_by ke fillable
+    ];
 }

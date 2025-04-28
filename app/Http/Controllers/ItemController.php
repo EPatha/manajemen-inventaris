@@ -45,7 +45,7 @@ class ItemController extends Controller
             'created_by' => 1,  
         ]);
     
-        return redirect()->route('items.index');
+        return redirect()->route('items.index')->with('success', 'Item berhasil ditambahkan!');
     }
 
     // Menampilkan form untuk mengedit item

@@ -16,8 +16,18 @@ class Item extends Model
         'quantity',
         'category_id',
         'supplier_id',
-        'created_by',  // Jika kamu ingin menetapkan 'created_by' secara otomatis
     ];
+
+    // Menentukan bahwa model ini menggunakan timestamps
+    public $timestamps = true;  // Laravel secara otomatis mengelola created_at dan updated_at
+
+    // Menambahkan mutator untuk created_by agar otomatis terisi
+    protected static function booted()
+    {
+        static::creating(function ($item) {
+            $item->created_by = auth()->id(); // Menetapkan created_by dengan ID pengguna yang sedang login
+        });
+    }
 
     // Relasi ke tabel Categories
     public function category()
