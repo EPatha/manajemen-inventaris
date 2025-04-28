@@ -6,9 +6,7 @@ Aplikasi manajemen inventaris berbasis web yang dirancang untuk membantu perusah
 Dibangun menggunakan Laravel dan Filament untuk backend dan dashboard admin.
 
 Aplikasi ini bertujuan untuk:
-- Memudahkan pencatatan keluar-masuk barang
-- Memantau ketersediaan stok secara real-time
-- Meningkatkan efisiensi pengelolaan inventaris perusahaan
+- Menyelesaikan UTS backend
 
 ## Fitur Utama
 
