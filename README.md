@@ -185,15 +185,3 @@ db:
 ```
 
 Kemudian jalankan ulang migrate & seed.
-
-## Struktur Arsitektur
-
-| File/Folder         | Deskripsi                                |
-|---------------------|------------------------------------------|
-| docker-compose.yml  | Konfigurasi multi-container Docker       |
-| Dockerfile           | Instruksi build image Laravel           |
-| inventory-project/  | Source code aplikasi Vent                |
-
-## License
-
-This project is open-source and free to use.
